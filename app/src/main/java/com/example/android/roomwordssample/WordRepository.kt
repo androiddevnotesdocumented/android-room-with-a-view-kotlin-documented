@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.Flow
  * Declares the DAO as a private property in the constructor. Pass in the DAO instead of the whole database, because you only need access to the DAO
  *
  * https://developer.android.com/topic/libraries/architecture/guide.html
- * Del.
  */
 
 class WordRepository(private val wordDao: WordDao) {
