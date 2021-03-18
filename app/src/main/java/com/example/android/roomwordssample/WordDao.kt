@@ -23,6 +23,7 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 /**
+ * WordDao is an interface; DAOs must either be interfaces or abstract classes.
  * The Room Magic is in this file, where you map a method call to an SQL query.
  *
  * When you are using complex data types, such as Date, you have to also supply type converters.

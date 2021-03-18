@@ -26,8 +26,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
+ * The database class for Room must be abstract and extend RoomDatabase.
+ *
  * This is the backend. The database. This used to be done by the OpenHelper.
  * The fact that this has very few comments emphasizes its coolness.
+ *
+ * Annotates class to be a Room Database with a table (entity) of the Word class.
+ *
  */
 @Database(entities = [Word::class], version = 1)
 abstract class WordRoomDatabase : RoomDatabase() {
@@ -35,9 +40,15 @@ abstract class WordRoomDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
 
     companion object {
+
+        // Singleton prevents multiple instances of database opening at the
+        // same time.
         @Volatile
         private var INSTANCE: WordRoomDatabase? = null
 
+        /**
+         * getDatabase returns the singleton. It'll create the database the first time it's accessed, using Room's database builder to create a RoomDatabase object in the application context from the WordRoomDatabase class and names it "word_database".
+         */
         fun getDatabase(
             context: Context,
             scope: CoroutineScope
